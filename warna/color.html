@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pengenalan Warna</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to bottom, #ffcc80, #ffe0b2);
+        text-align: center;
+        padding: 20px;
+        color: #333;
+      }
+      h1 {
+        color: #d84315;
+        font-size: 2.5em;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      }
+      .color-box {
+        width: 300px;
+        height: 300px;
+        margin: 20px auto;
+        border-radius: 10px;
+        transition: transform 0.3s;
+      }
+      .color-box:hover {
+        transform: scale(1.1);
+      }
+      .color-name {
+        font-size: 3em;
+        font-weight: bold;
+        color: #ff5722;
+        margin-top: 20px;
+        text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);
+      }
+      .navigation {
+        margin-top: 20px;
+      }
+      .navigation button {
+        background-color: #d84315;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1em;
+        cursor: pointer;
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s, transform 0.3s;
+      }
+      .navigation button:hover {
+        background-color: #e64a19;
+        transform: scale(1.1);
+      }
+      .navigation button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+      .background-shape {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 50%;
+        animation: float 6s infinite ease-in-out;
+        z-index: -1;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+      .shape1 {
+        width: 200px;
+        height: 200px;
+        top: 10%;
+        left: 15%;
+        background: #ffccbc;
+      }
+      .shape2 {
+        width: 300px;
+        height: 300px;
+        top: 40%;
+        right: 20%;
+        background: #fff8e1;
+      }
+      .shape3 {
+        width: 150px;
+        height: 150px;
+        bottom: 15%;
+        left: 20%;
+        background: #f8bbd0;
+      }
+      .floating-stars {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+      }
+      .star {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: yellow;
+        border-radius: 50%;
+        animation: twinkle 3s infinite;
+      }
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+      .back-button {
+        display: block;
+        margin: 30px auto;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1em;
+        cursor: pointer;
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s, transform 0.3s;
+      }
+      .back-button:hover {
+        background-color: #45a049;
+        transform: scale(1.1);
+      }
+    </style>
+    <script>
+      let currentColorIndex = 0;
+      const colors = [
+        { name: "Red", hex: "#FF0000" },
+        { name: "Green", hex: "#00FF00" },
+        { name: "Blue", hex: "#0000FF" },
+        { name: "Yellow", hex: "#FFFF00" },
+        { name: "Orange", hex: "#FFA500" },
+        { name: "Purple", hex: "#800080" },
+        { name: "Pink", hex: "#FFC0CB" },
+        { name: "Cyan", hex: "#00FFFF" },
+        { name: "Magenta", hex: "#FF00FF" },
+        { name: "Lime", hex: "#00FF00" },
+      ];
+
+      function showColor(index) {
+        const color = colors[index];
+        document.getElementById("colorBox").style.backgroundColor = color.hex;
+        document.getElementById("colorName").innerText = color.name;
+        document.getElementById("prevButton").disabled = index === 0;
+        document.getElementById("nextButton").disabled =
+          index === colors.length - 1;
+      }
+
+      function nextColor() {
+        if (currentColorIndex < colors.length - 1) {
+          currentColorIndex++;
+          showColor(currentColorIndex);
+        }
+      }
+
+      function prevColor() {
+        if (currentColorIndex > 0) {
+          currentColorIndex--;
+          showColor(currentColorIndex);
+        }
+      }
+
+      window.onload = function () {
+        showColor(currentColorIndex);
+        createStars();
+      };
+
+      function createStars() {
+        const starsContainer = document.querySelector(".floating-stars");
+        for (let i = 0; i < 50; i++) {
+          const star = document.createElement("div");
+          star.classList.add("star");
+          star.style.left = Math.random() * 100 + "%";
+          star.style.top = Math.random() * 100 + "%";
+          star.style.animationDelay = Math.random() * 5 + "s";
+          starsContainer.appendChild(star);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Pengenalan Warna</h1>
+    <div id="colorBox" class="color-box"></div>
+    <div id="colorName" class="color-name"></div>
+    <div class="navigation">
+      <button id="prevButton" onclick="prevColor()">Sebelumnya</button>
+      <button id="nextButton" onclick="nextColor()">Berikutnya</button>
+    </div>
+    <button class="back-button" onclick="location.href='../index1.html'">
+      Kembali ke Halaman Utama
+    </button>
+    <div class="background-shape shape1"></div>
+    <div class="background-shape shape2"></div>
+    <div class="background-shape shape3"></div>
+    <div class="floating-stars"></div>
+  </body>
+</html>

@@ -1,0 +1,91 @@
+/* Umum */
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background-image: url('bg.webp'); /* Ganti dengan path gambar yang diinginkan */
+    background-size: cover; /* Agar gambar menutupi seluruh layar */
+    background-position: center; /* Agar gambar berada di tengah */
+    background-attachment: fixed; /* Agar gambar tetap saat scroll */
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* Header */
+header {
+    background-color: #FF6347;
+    color: white;
+    padding: 20px;
+    font-size: 2em;
+    border-bottom: 5px solid #FFD700;
+}
+
+h1 {
+    margin: 0;
+}
+
+/* Menu dan Tombol */
+.menu {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.menu-item {
+    background-color: #87CEEB;
+    color: white;
+    font-size: 1.5em;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.menu-item:hover {
+    background-color: #4682b4;
+}
+
+/* Konten Halaman Bangun Ruang */
+.konten {
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 30px auto;
+    width: 80%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.konten h2 {
+    font-size: 2em;
+    color: #FF6347;
+}
+
+.konten p {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.konten img {
+    width: 150px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Animasi untuk konten */
+@keyframes muncul {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.konten {
+    animation: muncul 1s ease-out;
+}
